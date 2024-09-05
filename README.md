@@ -26,7 +26,44 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Project setup
+Game Engine is a system that allows creation of campaigns/events such as Fortune Rain to allow the consumers to
+* Create, send, or receive challenge(s) on a game/event that they have created to each other.
+* Collect different types of rewards after the completing the challenges.
+* Process of the transactions based on the transactions coming from other systems.
+
+
+### Modules/Services
+Located at [apps](apps) directory, the services are defined as the following:
+
+* [campaign-setup](apps%2Fcampaign-setup): Setup new campaign for the upcoming game events.
+* [cep-game-engine](apps%2Fcep-game-engine) (main): Main application.
+* [game-engine](apps%2Fgame-engine): Process games created by the users. Store game results information.
+* [reward-redemption](apps%2Freward-redemption): Claim the rewards from the game.
+* [task](apps%2Ftask): A task is considered as a game event happened in the system.
+* [transaction-log](apps%2Ftransaction-log): Producing rewards from the transactions based on the game rules defined.
+
+
+### Ports:
+Ports of each microservice is different to launch the microservices in the terminal without conflicts.
+* campaign-setup: 3001
+* cep-game-engine (main): 3000
+* game-engine: 3002
+* reward-redemption: 3003
+* task: 3004
+* transaction-log: 3005
+
+# Note(s):
+* **Monorepo** design. So all modules are created within the project itself.
+* Every module is build as **microservice**. So that the app can be individually deployed and scaled during production.
+* Data Transfer Objects (DTOs) are created in a library module in order to
+* Using the following:
+  * Typescript
+  * Prettier: To format code, imports of the project.
+  * Jest: For unit testing.
+
+# Development
+
+## Project Setup
 
 ```bash
 $ npm install
@@ -45,8 +82,47 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Run tests
+## Module Creation
+To create new microservices in the project, execute the following:
 
+```bash
+nest generate app MODULE_NAME
+```
+
+For example:
+```bash
+nest generate app game-engine
+```
+
+This creates a directory that defines a controller, service, routes and tests that are configured automatically.
+
+### Start the Module Individually
+```bash
+nest start MODULE_NAME
+```
+
+For example:
+```bash
+nest start game-engine
+```
+
+## Library Creation
+To create reusable components that can be share across modules (for example Authentication), execute the following:
+
+```bash
+nest generate library MODULE_NAME
+```
+
+For example,
+```bash
+nest generate library auth
+```
+
+## Testing
+
+Ensure the test cases are executed within the given framework and approved libraries successfully without causing issues in software delivery.
+
+Execute the following:
 ```bash
 # unit tests
 $ npm run test
