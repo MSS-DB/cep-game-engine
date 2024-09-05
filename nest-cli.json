@@ -1,8 +1,167 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src",
+  "sourceRoot": "apps/cep-game-engine/src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/cep-game-engine/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/cep-game-engine",
+  "projects": {
+    "cep-game-engine": {
+      "type": "application",
+      "root": "apps/cep-game-engine",
+      "entryFile": "main",
+      "sourceRoot": "apps/cep-game-engine/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/cep-game-engine/tsconfig.app.json"
+      }
+    },
+    "game-engine": {
+      "type": "application",
+      "root": "apps/game-engine",
+      "entryFile": "main",
+      "sourceRoot": "apps/game-engine/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/game-engine/tsconfig.app.json"
+      }
+    },
+    "task": {
+      "type": "application",
+      "root": "apps/task",
+      "entryFile": "main",
+      "sourceRoot": "apps/task/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/task/tsconfig.app.json"
+      }
+    },
+    "campaign-setup": {
+      "type": "application",
+      "root": "apps/campaign-setup",
+      "entryFile": "main",
+      "sourceRoot": "apps/campaign-setup/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/campaign-setup/tsconfig.app.json"
+      }
+    },
+    "transaction-log": {
+      "type": "application",
+      "root": "apps/transaction-log",
+      "entryFile": "main",
+      "sourceRoot": "apps/transaction-log/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/transaction-log/tsconfig.app.json"
+      }
+    },
+    "reward-redemption": {
+      "type": "application",
+      "root": "apps/reward-redemption",
+      "entryFile": "main",
+      "sourceRoot": "apps/reward-redemption/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/reward-redemption/tsconfig.app.json"
+      }
+    },
+    "auth": {
+      "type": "library",
+      "root": "libs/auth",
+      "entryFile": "index",
+      "sourceRoot": "libs/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/auth/tsconfig.lib.json"
+      }
+    },
+    "log": {
+      "type": "library",
+      "root": "libs/log",
+      "entryFile": "index",
+      "sourceRoot": "libs/log/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/log/tsconfig.lib.json"
+      }
+    },
+    "database": {
+      "type": "library",
+      "root": "libs/database",
+      "entryFile": "index",
+      "sourceRoot": "libs/database/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/database/tsconfig.lib.json"
+      }
+    },
+    "event": {
+      "type": "library",
+      "root": "libs/event",
+      "entryFile": "index",
+      "sourceRoot": "libs/event/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/event/tsconfig.lib.json"
+      }
+    },
+    "utils": {
+      "type": "library",
+      "root": "libs/utils",
+      "entryFile": "index",
+      "sourceRoot": "libs/utils/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/utils/tsconfig.lib.json"
+      }
+    },
+    "validation": {
+      "type": "library",
+      "root": "libs/validation",
+      "entryFile": "index",
+      "sourceRoot": "libs/validation/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/validation/tsconfig.lib.json"
+      }
+    },
+    "inter-service": {
+      "type": "library",
+      "root": "libs/inter-service",
+      "entryFile": "index",
+      "sourceRoot": "libs/inter-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/inter-service/tsconfig.lib.json"
+      }
+    },
+    "health": {
+      "type": "library",
+      "root": "libs/health",
+      "entryFile": "index",
+      "sourceRoot": "libs/health/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/health/tsconfig.lib.json"
+      }
+    },
+    "notification": {
+      "type": "library",
+      "root": "libs/notification",
+      "entryFile": "index",
+      "sourceRoot": "libs/notification/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/notification/tsconfig.lib.json"
+      }
+    },
+    "i18n": {
+      "type": "library",
+      "root": "libs/i18n",
+      "entryFile": "index",
+      "sourceRoot": "libs/i18n/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/i18n/tsconfig.lib.json"
+      }
+    },
+    "security": {
+      "type": "library",
+      "root": "libs/security",
+      "entryFile": "index",
+      "sourceRoot": "libs/security/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/security/tsconfig.lib.json"
+      }
+    }
   }
 }

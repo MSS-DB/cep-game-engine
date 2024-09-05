@@ -16,6 +16,74 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@app/auth": [
+        "libs/auth/src"
+      ],
+      "@app/auth/*": [
+        "libs/auth/src/*"
+      ],
+      "@app/log": [
+        "libs/log/src"
+      ],
+      "@app/log/*": [
+        "libs/log/src/*"
+      ],
+      "@app/database": [
+        "libs/database/src"
+      ],
+      "@app/database/*": [
+        "libs/database/src/*"
+      ],
+      "@app/event": [
+        "libs/event/src"
+      ],
+      "@app/event/*": [
+        "libs/event/src/*"
+      ],
+      "@app/utils": [
+        "libs/utils/src"
+      ],
+      "@app/utils/*": [
+        "libs/utils/src/*"
+      ],
+      "@app/validation": [
+        "libs/validation/src"
+      ],
+      "@app/validation/*": [
+        "libs/validation/src/*"
+      ],
+      "@app/inter-service": [
+        "libs/inter-service/src"
+      ],
+      "@app/inter-service/*": [
+        "libs/inter-service/src/*"
+      ],
+      "@app/health": [
+        "libs/health/src"
+      ],
+      "@app/health/*": [
+        "libs/health/src/*"
+      ],
+      "@app/notification": [
+        "libs/notification/src"
+      ],
+      "@app/notification/*": [
+        "libs/notification/src/*"
+      ],
+      "@app/i18n": [
+        "libs/i18n/src"
+      ],
+      "@app/i18n/*": [
+        "libs/i18n/src/*"
+      ],
+      "@app/security": [
+        "libs/security/src"
+      ],
+      "@app/security/*": [
+        "libs/security/src/*"
+      ]
+    }
   }
 }
