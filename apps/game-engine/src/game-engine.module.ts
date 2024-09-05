@@ -12,6 +12,9 @@ import { NotificationModule } from '@app/notification';
 import { SecurityModule } from '@app/security';
 import { UtilsModule } from '@app/utils';
 import { ValidationModule } from '@app/validation';
+import { APP_FILTER } from '@nestjs/core';
+import { AllExceptionsFilter } from './game-engine.exceptions.filter';
+import { gameEngineProviders } from './game-engine.providers';
 
 @Module({
   imports: [
@@ -28,6 +31,13 @@ import { ValidationModule } from '@app/validation';
     ValidationModule,
   ],
   controllers: [GameEngineController],
-  providers: [GameEngineService],
+  providers: [
+    GameEngineService,
+    ...gameEngineProviders,
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionsFilter,
+    },
+  ],
 })
 export class GameEngineModule {}
