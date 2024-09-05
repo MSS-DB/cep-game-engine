@@ -60,6 +60,8 @@ Ports of each microservice is different to launch the microservices in the termi
   * Typescript
   * Prettier: To format code, imports of the project.
   * Jest: For unit testing.
+  * Sequelize: Object Relational Mapping(ORM) solution.
+  * MySQL: SQL solution used for database.
 
 # Development
 
