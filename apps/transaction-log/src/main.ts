@@ -6,10 +6,10 @@ async function bootstrap() {
   const app = await NestFactory.create(TransactionLogModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Game Engine')
-    .setDescription('Game Engine')
+    .setTitle('Transaction Log')
+    .setDescription('Transaction Log')
     .setVersion('1.0')
-    .addTag('game-engine')
+    .addTag('transaction-log')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
