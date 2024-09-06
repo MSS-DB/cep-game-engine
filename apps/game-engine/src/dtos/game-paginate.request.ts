@@ -1,8 +1,3 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { PaginateRequest } from '@app/utils/models/paginate.request';
 
-export class GamePaginateRequest {
-  @ApiPropertyOptional({ example: 0, default: 0 })
-  page?: number;
-  @ApiPropertyOptional({ example: 20, default: 20 })
-  size?: number;
-}
+export class GamePaginateRequest extends PaginateRequest {}
