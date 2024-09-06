@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Built based on [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 Game Engine is a system that allows creation of campaigns/events such as Fortune Rain to allow the consumers to
 * Create, send, or receive challenge(s) on a game/event that they have created to each other.
@@ -136,17 +136,46 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Generate/View Documentation
+
+Using [Compdoc](https://docs.nestjs.com/recipes/documentation#setup), you can view the modules and project structure the details.
+
+```bash
+npm run start:doc
+```
+
+View the website at:
+``` http request
+http://locahost:8080
+```
+
+## Generate/View API Docs (Swagger)
+
+With Swagger, you can view or download API collection of the application in order to be used by other applications. 
+
+After started the application:
+
+View API Docs website:
+```bash
+http://localhost:PORT_NUMBER/api
+```
+
+Download API collection as JSON:
+```http request
+http://localhost:PORT_NUMBER/api-json
+```
+
+Download API collection as YAML:
+```http request
+http://localhost:PORT_NUMBER/api-yaml
+```
+
 ## Resources
 
 Check out a few resources that may come in handy when working with NestJS:
 
 - Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+
 
 ## Support
 
@@ -154,7 +183,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
+- Author - [Teoh Kheng Hong](https://github.com/tkhenghong)
 - Website - [https://nestjs.com](https://nestjs.com/)
 - Twitter - [@nestframework](https://twitter.com/nestframework)
 
