@@ -1,9 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { CampaignSetupModule } from './campaign-setup.module';
-import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { LogService } from '@app/log';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
-  const app = await NestFactory.create(CampaignSetupModule);
+  const app = await NestFactory.create(CampaignSetupModule, {
+    logger: new LogService(),
+  });
+
+  app.use(cookieParser());
 
   const config = new DocumentBuilder()
     .setTitle('Reward Redemption')

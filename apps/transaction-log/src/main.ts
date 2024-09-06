@@ -1,9 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { TransactionLogModule } from './transaction-log.module';
-import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { LogService } from '@app/log';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
-  const app = await NestFactory.create(TransactionLogModule);
+  const app = await NestFactory.create(TransactionLogModule, {
+    logger: new LogService(),
+  });
+
+  app.use(cookieParser());
 
   const config = new DocumentBuilder()
     .setTitle('Transaction Log')
