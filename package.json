@@ -1,10 +1,10 @@
 {
   "name": "cep-game-engine",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Game Engine is a system that allows creation of campaigns/events of MAE applications such as Fortune Rain.",
+  "author": "Teoh-Kheng-Hong",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
@@ -12,6 +12,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/apps/cep-game-engine/main",
+    "start:doc": "npx @compodoc/compodoc -p tsconfig.json -s --port=8081",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -41,6 +42,7 @@
     "sequelize-typescript": "^2.1.6"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.25",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
