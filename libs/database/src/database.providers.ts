@@ -13,7 +13,7 @@ export const databaseProviders = [
         port: 3306,
         username: 'root',
         password: 'password',
-        database: 'nest',
+        database: 'cep-game-engine',
       });
       sequelize.addModels([Game, GameInstance, GameInstanceResult]);
       await sequelize.sync();
