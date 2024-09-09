@@ -14,6 +14,9 @@ export const databaseProviders = [
         username: 'root',
         password: 'password',
         database: 'cep-game-engine',
+        define: {
+          timestamps: true,
+        },
       });
       sequelize.addModels([Game, GameInstance, GameInstanceResult]);
       await sequelize.sync();

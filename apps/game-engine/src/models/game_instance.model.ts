@@ -1,20 +1,17 @@
 import {
   AutoIncrement,
   Column,
-  CreatedAt,
   DataType,
   ForeignKey,
   Index,
   Model,
   PrimaryKey,
   Table,
-  UpdatedAt,
 } from 'sequelize-typescript';
 import { Game } from './game.model';
 
 @Table({
   tableName: 'game_instances', // specify table name
-  timestamps: true, // enable createdAt and updatedAt fields
 })
 export class GameInstance extends Model<GameInstance> {
   @PrimaryKey
@@ -71,20 +68,6 @@ export class GameInstance extends Model<GameInstance> {
     },
   })
   requestor: string;
-
-  @CreatedAt
-  @Column({
-    type: DataType.DATE,
-    allowNull: false,
-  })
-  createdAt: Date;
-
-  @UpdatedAt
-  @Column({
-    type: DataType.DATE,
-    allowNull: false,
-  })
-  updatedAt: Date;
 
   @Index('idx_game_instance_country')
   @Column({

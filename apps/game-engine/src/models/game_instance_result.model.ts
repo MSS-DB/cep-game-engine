@@ -6,8 +6,6 @@ import {
   Model,
   PrimaryKey,
   Table,
-  CreatedAt,
-  UpdatedAt,
   Index,
 } from 'sequelize-typescript';
 import { GameInstance } from './game_instance.model';
@@ -15,7 +13,6 @@ import { Game } from './game.model';
 
 @Table({
   tableName: 'game_instance_results', // specify table name
-  timestamps: true, // enable createdAt and updatedAt fields
 })
 export class GameInstanceResult extends Model<GameInstanceResult> {
   @PrimaryKey
@@ -87,20 +84,6 @@ export class GameInstanceResult extends Model<GameInstanceResult> {
     },
   })
   comment: string;
-
-  @CreatedAt
-  @Column({
-    type: DataType.DATE,
-    allowNull: false,
-  })
-  createdAt: Date;
-
-  @UpdatedAt
-  @Column({
-    type: DataType.DATE,
-    allowNull: false,
-  })
-  updatedAt: Date;
 
   @Index('idx_game_instance_result')
   @Column({
