@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { Game } from './models/game.model';
 import { GameInstance } from './models/game_instance.model';
 import {
@@ -9,6 +9,8 @@ import {
 
 @Injectable()
 export class GameEngineService {
+  private readonly logger = new Logger(GameEngineService.name);
+
   constructor(
     @Inject('GAME_REPOSITORY')
     private readonly gameRepository: typeof Game,
@@ -16,8 +18,8 @@ export class GameEngineService {
     private readonly gameInstanceRepository: typeof GameInstance,
   ) {}
 
-  async getGame(filter: Partial<Game>): Promise<Game> {
-    const game = await this.gameRepository.findOne<Game>({ where: filter });
+  async getGame(id: number): Promise<Game> {
+    const game = await this.gameRepository.findOne<Game>({ where: { id } });
     if (!game) {
       throw new NotFoundException('Game not found');
     }
@@ -36,7 +38,7 @@ export class GameEngineService {
     id: number,
     updateGameRequest: UpdateGameRequest,
   ): Promise<void> {
-    const existingGame = await this.getGame({ id });
+    const existingGame = await this.getGame(id);
 
     if (!existingGame) {
       throw new NotFoundException('Game not found');

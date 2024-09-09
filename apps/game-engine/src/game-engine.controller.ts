@@ -31,11 +31,15 @@ export class GameEngineController {
 
   constructor(private readonly gameEngineService: GameEngineService) {}
 
+  @Get(':id')
+  getGame(@Param('id', ParseIntPipe) id: number): Promise<Game> {
+    return this.gameEngineService.getGame(id);
+  }
+
   @Get()
   @ApiOperation({ summary: 'Get all games with optional filtering' })
   @ApiResponse({ status: 200, description: 'List of games', type: [Game] })
   getGames(@Query() filter: GamePaginateRequest): Promise<Game[]> {
-    this.logger.log('Check filter: ', filter);
     return this.gameEngineService.getGames(filter);
   }
 

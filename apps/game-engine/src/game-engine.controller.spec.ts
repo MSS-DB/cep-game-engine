@@ -1,12 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GameEngineController } from './game-engine.controller';
 import { GameEngineService } from './game-engine.service';
-import { CreateGameRequest } from './dtos/create-game.dto';
-import { UpdateGameRequest } from './dtos/update-game.dto';
 import { Game } from './models/game.model';
 import { GameInstance } from './models/game_instance.model';
-import { CreateGameInstanceRequest } from './dtos/create-game-instance.dto';
-import { UpdateGameInstanceRequest } from './dtos/update-game-instance.dto';
+import {
+  CreateGameInstanceRequest,
+  CreateGameRequest,
+  GamePaginateRequest,
+  UpdateGameInstanceRequest,
+  UpdateGameRequest,
+} from './dtos';
 
 describe('GameEngineController', () => {
   let gameEngineController: GameEngineController;
@@ -19,9 +22,11 @@ describe('GameEngineController', () => {
         {
           provide: GameEngineService,
           useValue: {
+            getGame: jest.fn(),
             getGames: jest.fn(),
             createGame: jest.fn(),
             updateGame: jest.fn(),
+            getGameInstance: jest.fn(),
             createGameInstance: jest.fn(),
             updateGameInstance: jest.fn(),
           },
@@ -34,6 +39,24 @@ describe('GameEngineController', () => {
     gameEngineService = module.get<GameEngineService>(GameEngineService);
   });
 
+  describe('getGame', () => {
+    it('should return a game by ID', async () => {
+      const game: Game = {
+        id: 1,
+        name: 'Game 1',
+        description: 'Description 1',
+        isActive: true,
+        code: 'GAME1',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      } as Game;
+
+      jest.spyOn(gameEngineService, 'getGame').mockResolvedValue(game);
+
+      expect(await gameEngineController.getGame(1)).toBe(game);
+    });
+  });
+
   describe('getGames', () => {
     it('should return an array of games', async () => {
       const games: Game[] = [
@@ -42,18 +65,24 @@ describe('GameEngineController', () => {
           name: 'Game 1',
           description: 'Description 1',
           isActive: true,
+          code: 'GAME1',
+          createdAt: new Date(),
+          updatedAt: new Date(),
         } as Game,
         {
           id: 2,
           name: 'Game 2',
           description: 'Description 2',
           isActive: false,
+          code: 'GAME2',
+          createdAt: new Date(),
+          updatedAt: new Date(),
         } as Game,
       ];
 
       jest.spyOn(gameEngineService, 'getGames').mockResolvedValue(games);
 
-      const filter = { isActive: true };
+      const filter = { where: { isActive: true } } as GamePaginateRequest;
       expect(await gameEngineController.getGames(filter)).toBe(games);
     });
   });
@@ -68,6 +97,9 @@ describe('GameEngineController', () => {
 
       const game: Game = {
         id: 1,
+        code: 'NEWGAME',
+        createdAt: new Date(),
+        updatedAt: new Date(),
         ...createGameRequest,
       } as Game;
 
@@ -88,9 +120,9 @@ describe('GameEngineController', () => {
         gameCode: 'ABC123',
       };
 
-      const gameId = '1';
+      const gameId = 1;
 
-      jest.spyOn(gameEngineService, 'updateGame').mockImplementation();
+      jest.spyOn(gameEngineService, 'updateGame').mockResolvedValue(undefined);
 
       await gameEngineController.updateGame(gameId, updateGameRequest);
 
@@ -109,12 +141,16 @@ describe('GameEngineController', () => {
         country: 'US',
         startDate: new Date(),
         endDate: new Date(),
-      };
+      } as CreateGameInstanceRequest;
 
       const gameInstance: GameInstance = {
         id: 1,
+        code: createGameInstanceRequest.gameCode,
+        gameId: 1, // Assuming gameId is resolved during instance creation
+        createdAt: new Date(),
+        updatedAt: new Date(),
         ...createGameInstanceRequest,
-      } as GameInstance;
+      } as unknown as GameInstance;
 
       jest
         .spyOn(gameEngineService, 'createGameInstance')
@@ -137,9 +173,11 @@ describe('GameEngineController', () => {
         endDate: new Date(),
       };
 
-      const instanceId = '1';
+      const instanceId = 1;
 
-      jest.spyOn(gameEngineService, 'updateGameInstance').mockImplementation();
+      jest
+        .spyOn(gameEngineService, 'updateGameInstance')
+        .mockResolvedValue(undefined);
 
       await gameEngineController.updateGameInstance(
         instanceId,
