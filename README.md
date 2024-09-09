@@ -31,6 +31,10 @@ Game Engine is a system that allows creation of campaigns/events such as Fortune
 * Collect different types of rewards after the completing the challenges.
 * Process of the transactions based on the transactions coming from other systems.
 
+# Demo
+A video to display the current state of the system is available [here](https://youtu.be/7v0q-y8r3oY).
+![demo1.gif](docs/demo/demo1.gif)
+![demo2.gif](docs/demo/demo2.gif)
 
 ### Modules/Services
 Located at [apps](apps) directory, the services are defined as the following:
