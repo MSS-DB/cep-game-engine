@@ -115,7 +115,12 @@ export class GameEngineController {
     @Param('id', ParseIntPipe) id: number,
     @Body() updateGameRequest: UpdateGameRequest,
   ): Promise<void> {
-    return this.gameEngineService.updateGame(id, updateGameRequest);
+    return this.gameEngineService.updateGame(id, {
+      name: updateGameRequest.name,
+      description: updateGameRequest.description,
+      isActive: updateGameRequest.isActive,
+      code: updateGameRequest.gameCode,
+    } as Game);
   }
 
   @Post('instances')
@@ -161,9 +166,11 @@ export class GameEngineController {
     @Param('id', ParseIntPipe) id: number,
     @Body() updateGameInstanceRequest: UpdateGameInstanceRequest,
   ): Promise<void> {
-    return this.gameEngineService.updateGameInstance(
-      id,
-      updateGameInstanceRequest,
-    );
+    return this.gameEngineService.updateGameInstance(id, {
+      code: updateGameInstanceRequest.gameInstanceCode,
+      startDate: updateGameInstanceRequest.startDate,
+      endDate: updateGameInstanceRequest.endDate,
+      requestor: updateGameInstanceRequest.requestor,
+    } as GameInstance);
   }
 }

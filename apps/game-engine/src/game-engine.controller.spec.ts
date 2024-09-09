@@ -100,7 +100,9 @@ describe('GameEngineController', () => {
         code: 'NEWGAME',
         createdAt: new Date(),
         updatedAt: new Date(),
-        ...createGameRequest,
+        name: 'New Game',
+        description: 'New Description',
+        isActive: true,
       } as Game;
 
       jest.spyOn(gameEngineService, 'createGame').mockResolvedValue(game);
@@ -128,7 +130,12 @@ describe('GameEngineController', () => {
 
       expect(gameEngineService.updateGame).toHaveBeenCalledWith(
         gameId,
-        updateGameRequest,
+        expect.objectContaining({
+          name: updateGameRequest.name,
+          description: updateGameRequest.description,
+          isActive: updateGameRequest.isActive,
+          code: updateGameRequest.gameCode, // This should match the mapping
+        }),
       );
     });
   });
@@ -141,7 +148,7 @@ describe('GameEngineController', () => {
         country: 'US',
         startDate: new Date(),
         endDate: new Date(),
-      } as CreateGameInstanceRequest;
+      };
 
       const gameInstance: GameInstance = {
         id: 1,
@@ -149,8 +156,11 @@ describe('GameEngineController', () => {
         gameId: 1, // Assuming gameId is resolved during instance creation
         createdAt: new Date(),
         updatedAt: new Date(),
-        ...createGameInstanceRequest,
-      } as unknown as GameInstance;
+        requestor: 'User1',
+        country: 'US',
+        startDate: new Date(),
+        endDate: new Date(),
+      } as GameInstance;
 
       jest
         .spyOn(gameEngineService, 'createGameInstance')
@@ -186,7 +196,12 @@ describe('GameEngineController', () => {
 
       expect(gameEngineService.updateGameInstance).toHaveBeenCalledWith(
         instanceId,
-        updateGameInstanceRequest,
+        expect.objectContaining({
+          code: updateGameInstanceRequest.gameInstanceCode,
+          startDate: updateGameInstanceRequest.startDate,
+          endDate: updateGameInstanceRequest.endDate,
+          requestor: updateGameInstanceRequest.requestor,
+        }),
       );
     });
   });

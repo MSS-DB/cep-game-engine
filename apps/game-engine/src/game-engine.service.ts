@@ -1,11 +1,7 @@
 import { Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { Game } from './models/game.model';
 import { GameInstance } from './models/game_instance.model';
-import {
-  GamePaginateRequest,
-  UpdateGameInstanceRequest,
-  UpdateGameRequest,
-} from './dtos';
+import { GamePaginateRequest } from './dtos';
 
 @Injectable()
 export class GameEngineService {
@@ -20,6 +16,7 @@ export class GameEngineService {
 
   async getGame(id: number): Promise<Game> {
     const game = await this.gameRepository.findOne<Game>({ where: { id } });
+
     if (!game) {
       throw new NotFoundException('Game not found');
     }
@@ -34,10 +31,7 @@ export class GameEngineService {
     return await this.gameRepository.create(createGameDto);
   }
 
-  async updateGame(
-    id: number,
-    updateGameRequest: UpdateGameRequest,
-  ): Promise<void> {
+  async updateGame(id: number, updateGameRequest: Game): Promise<void> {
     const existingGame = await this.getGame(id);
 
     if (!existingGame) {
@@ -66,7 +60,7 @@ export class GameEngineService {
 
   async updateGameInstance(
     id: number,
-    updateGameInstanceRequest: UpdateGameInstanceRequest,
+    updateGameInstanceRequest: GameInstance,
   ): Promise<void> {
     const existingGameInstance = await this.getGameInstance({ id });
 
