@@ -1,5 +1,4 @@
 import {
-  AutoIncrement,
   Column,
   DataType,
   Index,
@@ -9,25 +8,25 @@ import {
 } from 'sequelize-typescript';
 
 @Table({
-  tableName: 'games', // specify table name
+  tableName: 'games',
 })
 export class Game extends Model<Game> {
   @PrimaryKey
-  @AutoIncrement
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
+    autoIncrement: true,
   })
   id: number;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
     unique: true, // ensure that code is unique
     validate: {
       len: [3, 20], // validate length of the code
     },
   })
+  @Index('idx_game_code')
   code: string;
 
   @Column({
@@ -44,6 +43,7 @@ export class Game extends Model<Game> {
       len: [3, 50], // validate length of the name
     },
   })
+  @Index('idx_game_name')
   name: string;
 
   @Column({
@@ -54,11 +54,4 @@ export class Game extends Model<Game> {
     },
   })
   description: string;
-
-  @Index('idx_game_name')
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  indexName: string;
 }

@@ -1,5 +1,4 @@
 import {
-  AutoIncrement,
   Column,
   DataType,
   ForeignKey,
@@ -12,14 +11,14 @@ import { GameInstance } from './game_instance.model';
 import { Game } from './game.model';
 
 @Table({
-  tableName: 'game_instance_results', // specify table name
+  tableName: 'game_instance_results',
 })
 export class GameInstanceResult extends Model<GameInstanceResult> {
   @PrimaryKey
-  @AutoIncrement
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
+    autoIncrement: true,
   })
   id: number;
 
@@ -44,6 +43,7 @@ export class GameInstanceResult extends Model<GameInstanceResult> {
       len: [3, 3], // Validate length for ISO 3166-1 alpha-3 code
     },
   })
+  @Index('idx_game_instance_result_country')
   country: string;
 
   @Column({
@@ -84,11 +84,4 @@ export class GameInstanceResult extends Model<GameInstanceResult> {
     },
   })
   comment: string;
-
-  @Index('idx_game_instance_result')
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  indexedField: string;
 }
