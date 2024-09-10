@@ -83,6 +83,12 @@
       ],
       "@app/security/*": [
         "libs/security/src/*"
+      ],
+      "@app/configuration": [
+        "libs/configuration/src"
+      ],
+      "@app/configuration/*": [
+        "libs/configuration/src/*"
       ]
     }
   }
