@@ -22,19 +22,17 @@ export class GameInstanceResult extends Model<GameInstanceResult> {
   })
   id: number;
 
-  @ForeignKey(() => GameInstance)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
-  gameInstanceId: number; // Use the ID of GameInstance for foreign key
+  gameInstanceCode: number; // Use the code of GameInstance for foreign key
 
-  @ForeignKey(() => Game)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
-  gameId: number; // Use the ID of Game for foreign key
+  gameCode: number; // Use the code of Game for foreign key
 
   @Column({
     type: DataType.STRING(3),

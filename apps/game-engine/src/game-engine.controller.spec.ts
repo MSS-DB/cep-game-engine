@@ -153,7 +153,7 @@ describe('GameEngineController', () => {
       const gameInstance: GameInstance = {
         id: 1,
         code: createGameInstanceRequest.gameCode,
-        gameId: 1, // Assuming gameId is resolved during instance creation
+        gameCode: 1, // Assuming gameId is resolved during instance creation
         createdAt: new Date(),
         updatedAt: new Date(),
         requestor: 'User1',

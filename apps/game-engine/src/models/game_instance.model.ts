@@ -21,6 +21,7 @@ export class GameInstance extends Model<GameInstance> {
   })
   id: number;
 
+  // UUID with RFC9562 standard
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -37,7 +38,7 @@ export class GameInstance extends Model<GameInstance> {
     type: DataType.INTEGER, // Foreign key should match the primary key type in Game
     allowNull: false,
   })
-  gameId: number; // Rename to match the primary key of the related model
+  gameCode: number; // Rename to match the primary key of the related model
 
   // Following ISO 3166-1 alpha-3
   @Column({
@@ -69,4 +70,11 @@ export class GameInstance extends Model<GameInstance> {
     },
   })
   requestor: string;
+
+  // Duration of game in seconds as default.
+  @Column({
+    type: DataType.DATE,
+    allowNull: false,
+  })
+  gameDuration: Date;
 }
