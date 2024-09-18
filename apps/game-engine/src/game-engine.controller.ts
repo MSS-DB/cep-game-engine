@@ -173,4 +173,6 @@ export class GameEngineController {
       requestor: updateGameInstanceRequest.requestor,
     } as GameInstance);
   }
+
+  // TODO: Create Game Instance Results APIs here.
 }

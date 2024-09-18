@@ -3,6 +3,9 @@ import { Game } from './models/game.model';
 import { GameInstance } from './models/game_instance.model';
 import { GamePaginateRequest } from './dtos';
 
+/**
+ * TODO: JSDoc coverage
+ */
 @Injectable()
 export class GameEngineService {
   private readonly logger = new Logger(GameEngineService.name);
@@ -28,6 +31,8 @@ export class GameEngineService {
   }
 
   async createGame(createGameDto: Omit<Game, 'id'>): Promise<Game> {
+      // TODO: Before creation, generate UUID for GameCode column in GameInstance database.
+
     return await this.gameRepository.create(createGameDto);
   }
 
@@ -55,6 +60,8 @@ export class GameEngineService {
   async createGameInstance(
     createGameInstanceDto: Omit<GameInstance, 'id'>,
   ): Promise<GameInstance> {
+    // TODO: Before creation, generate UUID for Code column in GameInstance database.
+
     return await this.gameInstanceRepository.create(createGameInstanceDto);
   }
 
@@ -72,4 +79,8 @@ export class GameEngineService {
       where: { id },
     });
   }
+
+  // TODO: Create Game Instance Results functions here
+  // Before creation, get UUID GameInstanceCode column in GameInstance database.
+
 }
